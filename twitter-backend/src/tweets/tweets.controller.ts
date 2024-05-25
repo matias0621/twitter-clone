@@ -3,7 +3,7 @@ import { TweetsService } from "./tweets.service";
 import { Tweets } from "@prisma/client";
 
 
-@Controller()
+@Controller('tweets')
 export class TweetsController{
 
     constructor(private tweetsService: TweetsService){}
@@ -23,8 +23,8 @@ export class TweetsController{
     }
 
     @Post()
-    async createTweet(@Body('data') data: Tweets){
-        return await this.tweetsService.createTweet(data);
+    async createTweet(@Body() data: Tweets){
+        return this.tweetsService.createTweet(data);
     }
 
     @Put(':id')

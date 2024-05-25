@@ -1,5 +1,5 @@
 import { Injectable } from "@nestjs/common";
-import { Tweets } from "@prisma/client";
+import { Prisma, Tweets } from "@prisma/client";
 import { PrismaService } from "src/prisma/prisma.service";
 
 
@@ -18,8 +18,10 @@ export class TweetsService{
         });
     }
 
-    async createTweet(data: Tweets): Promise<Tweets>{
-        return this.prisma.tweets.create({data});
+    async createTweet(data: Prisma.TweetsCreateInput): Promise<Tweets>{
+        return this.prisma.tweets.create({
+            data,
+        });
     }
 
     async updateTweet(id: number, data: Tweets): Promise<Tweets>{
